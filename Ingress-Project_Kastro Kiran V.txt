@@ -2,29 +2,39 @@
 
  								**Deployment of Microservices Application using Ingress Controller**
 
- 														   *by*
+ 														   
 
-=================== 										 			**Kastro Kiran V**
+=================== 										 		
 Step 1: Basic Setup
 ===================
 1.1. Push the code from Local to Remote
-Use a Personal Access Token (HTTPS method)
-🔧 Step-by-Step:
-Go to GitHub → Developer Settings > Personal Access Tokens
-Click "Tokens (classic)" > Generate new token
-Set scopes (permissions):
-Select at least:
- 	repo (for full control of private repositories)
- 	workflow (if you're using GitHub Actions)
- 	Copy the token (you won't be able to see it again!)
+GitHub SSH Key Setup (Short)
+
+Generate an SSH key:
+
+ssh-keygen -t ed25519 -C "your-email@example.com"
+
+View the public key:
+
+cat ~/.ssh/id_ed25519.pub
+Copy the output and add it in GitHub → Settings → SSH and GPG Keys → New SSH Key.
+
+Test the connection:
+
+ssh -T git@github.com
+
+Update the Git remote to SSH and push the repository:
+
+git remote set-url origin git@github.com:<username>/<repo>.git
+git push -u origin main
 
 🔁 Update Git credentials:
-git remote set-url origin https://<your\_username>:<your\_token>@github.com/KastroVKiran/microservices-ingress-kastro.git
+git remote set-url origin https://Wakekar:ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@github.com/.git 
 
 ✅ Push the code
 git push -u origin master
 
-1.2. Launch 1 VM (Ubuntu, 24.04, t2.large, 28 GB, Name: Ingress-Server)
+1.2. Launch 1 VM (Ubuntu, 26.04, m7i-flex.large, 28 GB, Name: Ingress-Server)
 
 Open below ports for the Security Group attached to the above VM
 Type                  Protocol   Port range
